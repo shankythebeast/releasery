@@ -9,7 +9,7 @@ function addCategoryParameter (parameters, terms) {
 
   // filter by category if category slugs are provided
   if (cat) {
-
+  //    console.log("car",cat)
     var categoriesIds = [];
     var selector = {};
 

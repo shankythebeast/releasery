@@ -5,18 +5,20 @@ import Countries from "./collection.js";
 // Add a "countries" property to terms which can be used to filter *all* existing Posts views. 
 function addCountryParameter (parameters, terms) {
 
-  var cat = terms.cat || terms["cat[]"];
+  var country = terms.country || terms["country[]"];
 
   // filter by country if country slugs are provided
-  if (cat) {
+  if(country){
+    // do nothing
+  //} else if (country) {
 
     var countriesIds = [];
     var selector = {};
 
-    if (typeof cat === "string") { // cat is a string
-      selector = {slug: cat};
-    } else if (Array.isArray(cat)) { // cat is an array
-      selector = {slug: {$in: cat}};
+    if (typeof country === "string") { // country is a string
+      selector = {slug: country};
+    } else if (Array.isArray(country)) { // country is an array
+      selector = {slug: {$in: country}};
     }
 
     // get all countries passed in terms
@@ -28,7 +30,10 @@ function addCountryParameter (parameters, terms) {
       countriesIds = countriesIds.concat(_.pluck(Countries.getChildren(country), "_id"));
     });
 
-    parameters.selector.countries = {$in: countriesIds};
+    //parameters.selector.countries = {$in: countriesIds};
+  //  parameters.selector.customArray11 = {'$elemMatch':{ 'country' : country }};
+//  } else {
+    //parameters.selector.customArray11 = {'$elemMatch':{ 'country' : 'uk' }};
   }
   return parameters;
 }

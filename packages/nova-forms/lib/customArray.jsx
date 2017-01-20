@@ -37,15 +37,25 @@ class CustomArray extends Component {
   
   }
 
-  changeInputValue(event,inputIndex){
-   
-  //    console.log("inputIndex  :  ",event,inputIndex);
-      this.state.inputvalue[inputIndex].country = event.target.value;
+  changeInputValue(country,inputIndex,event){
+    // var currencyIcon='';
+    //  countries.find().fetch().map(function(country){
+    //     if(country.name == event.target.value){
+    //       //console.log(country);
+    //       currencyIcon = country.icon;
+    //     }
+    //  })
+    // console.log("inputIndex  :  ",event,country,inputIndex);
+      this.state.inputvalue[inputIndex].country = country.name;
+      this.state.inputvalue[inputIndex].currencyIcon = country.icon;
       if(this.state.inputvalue[inputIndex].price == undefined){
         this.state.inputvalue[inputIndex].price = '';
       }
       if(this.state.inputvalue[inputIndex].reldate == undefined){
         this.state.inputvalue[inputIndex].reldate = '';
+      }
+      if(this.state.inputvalue[inputIndex].reldate_local == undefined){
+        this.state.inputvalue[inputIndex].reldate_local = '';
       }
       if(this.state.inputvalue[inputIndex].currencyIcon == undefined){
         this.state.inputvalue[inputIndex].currencyIcon = '';
@@ -64,6 +74,9 @@ class CustomArray extends Component {
       if(this.state.inputvalue[inputIndex].reldate == undefined){
         this.state.inputvalue[inputIndex].reldate = '';
       }
+      if(this.state.inputvalue[inputIndex].reldate_local == undefined){
+        this.state.inputvalue[inputIndex].reldate_local = '';
+      }
       if(this.state.inputvalue[inputIndex].currencyIcon == undefined){
         this.state.inputvalue[inputIndex].currencyIcon = '';
       }
@@ -75,8 +88,9 @@ class CustomArray extends Component {
   }
 
 onChangeDate(inputIndex,event){
-   //  console.log("inputIndex",event,inputIndex)
-    this.state.inputvalue[inputIndex].reldate = event._d;
+     this.state.inputvalue[inputIndex].reldate = event._d;
+     this.state.inputvalue[inputIndex].reldate_local =  event._d.toISOString().slice(0, 10);
+   //  console.log("inputIndex",event,inputIndex,event._d,(event._d.getMonth() + 1));
     this.context.addToAutofilledValues({[this.state.name]: this.state.inputvalue});
     this.setState({inputvalue:this.state.inputvalue});
 }
@@ -129,37 +143,30 @@ onChangeDate(inputIndex,event){
         <div className="col-sm-12 ">
         
           {that.state.inputvalue.map(function(items,inputIndex){
-            
+          //  console.log(items);
+            items.dropdownToggle =  items.isExpanded  ? {
+                display: 'block'
+              } : {display: 'none'};
             return(<div className="countryRelDateContainer">
-              <div className="col-xs-2">
-                  <input className="form-control"
-                  key={"CustomArray_"+inputIndex}
-               type="text"  
-                placeholder="Country"
-                value={items.country}
-                name={that.state.name}
-                // newDate argument is a Moment object given by re|act-datetime
-                onChange={e=> that.changeInputValue(e.persist()||e,inputIndex)}
-                  
-              />
-
-           
-              
+              <div className="col-xs-3">
              
+               <div className={items.isExpanded ? "ui selection dropdown active visible" : "ui selection dropdown"} onClick={()=>{ items.isExpanded= !items.isExpanded; that.setState({inputvalue:that.state.inputvalue})  }}>
+                    <input type="hidden" name={items.country}/>
+                    <i className="dropdown icon"></i>
+                    <div className="default text">{items.country}</div>
+                    <div className="menu" style={items.dropdownToggle}>
+                    {countries.find().fetch().map(function(country,countryIndex){
+                      return <div key={"dropdown_country_" +countryIndex} className="item" data-value="1" onClick={that.changeInputValue.bind(that,country,inputIndex)}>{country.name}</div>
+                    })}
+                    
+                    </div>
+              </div>
+                               
            </div> 
 
           <div className="col-xs-2 priceContainer">
 
-           <div className={items.isExpanded ? "dropdown open currencyDropDown" : "dropdown currencyDropDown"}>
-                  <button className="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" onClick={()=>{ items.isExpanded= !items.isExpanded; that.setState({inputvalue:that.state.inputvalue})  }}><i className={items.currencyIcon}></i>
-                  <span className="caret"></span></button>
-                 
-                  <ul className="dropdown-menu">
-                        {currencyIcons.map(function(icons,iconsIndex){
-                           return <li onClick={(e,icons)=>{ items.isExpanded=!items.isExpanded;  that.setState({currencySelected:e.target.className,inputvalue:that.state.inputvalue});  that.setCurrency(inputIndex,e.target.className); }   }  className={icons} value={icons}></li>
-                         })}
-                  </ul>  
-            </div>
+           
             
             <input
           className="form-control"
@@ -177,13 +184,14 @@ onChangeDate(inputIndex,event){
 
           </div>
           <div className="col-xs-4">
+         
             <DateTimePicker
               name={that.state.name} 
               key={"CustomArray_relDate_"+inputIndex}
-              value={items.reldate || new Date()}
+              value={items.reldate_local || new Date().toISOString().slice(0, 10)}
               // newDate argument is a Moment object given by react-datetime
               onChange={that.onChangeDate.bind(that,inputIndex)}
-              format={"x"} 
+              format="dd/mm/yyyy"
             />
   
           </div>
@@ -240,3 +248,34 @@ export default CustomArray;
                    
  //                </select>
 
+ // <input className="form-control"
+ //                  key={"CustomArray_"+inputIndex}
+ //               type="text"  
+ //                placeholder="Country"
+ //                value={items.country}
+ //                name={that.state.name}
+ //                // newDate argument is a Moment object given by re|act-datetime
+ //                onChange={e=> that.changeInputValue(e.persist()||e,inputIndex)}
+                  
+ //              />
+
+// <div className={items.isExpanded ? "dropdown open currencyDropDown" : "dropdown currencyDropDown"}>
+//                   <button className="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" onClick={()=>{ items.isExpanded= !items.isExpanded; that.setState({inputvalue:that.state.inputvalue})  }}><i className={items.currencyIcon}></i>
+//                   <span className="caret"></span></button>
+                 
+//                   <ul className="dropdown-menu">
+//                         {currencyIcons.map(function(icons,iconsIndex){
+//                            return <li onClick={(e,icons)=>{ items.isExpanded=!items.isExpanded;  that.setState({currencySelected:e.target.className,inputvalue:that.state.inputvalue});  that.setCurrency(inputIndex,e.target.className); }   }  className={icons} value={icons}></li>
+//                          })}
+//                   </ul>  
+//             </div>
+
+     
+              //  <select name="dropdown" className="ui dropdown " value={that.country}   onChange={e=> that.changeInputValue(e.persist()||e,inputIndex)} >
+              //   {countries.find().fetch().map(function(country){
+              //     return <option value={country.name}>{country.name}</option>
+              //   })}
+
+
+               
+              // </select>

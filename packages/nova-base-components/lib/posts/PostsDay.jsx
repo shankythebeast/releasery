@@ -12,6 +12,8 @@ class PostsDay extends Component {
 
     const terms = {
       view: "daily",
+      cat: this.props.locQuery.cat,
+      country: this.props.locQuery.country,
       date: date,
       after: moment(date).format("YYYY-MM-DD"),
       before: moment(date).format("YYYY-MM-DD"),
@@ -20,7 +22,8 @@ class PostsDay extends Component {
     };
 
     ({selector, options} = Posts.parameters.get(terms));
-
+   // console.log('options',options);
+  //  console.log('selector',selector);
     const postsPerPage = Telescope.settings.get("postsPerPage", 10);
 
     return (

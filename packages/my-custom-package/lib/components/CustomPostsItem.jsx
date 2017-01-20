@@ -32,7 +32,7 @@ class CustomPostsItem extends Telescope.components.PostsItem {
      }
     
     const post = this.props.post;
-  	console.log("post :ss",this.props,"countryName : ",countryName);
+  	//console.log("post :ss",this.props,"countryName : ",countryName);
     if(this.props.post.hasOwnProperty("customArray11")){
       if(this.props.post.customArray11.constructor === Array){
         this.props.post.customArray11.forEach(function(items){
@@ -136,19 +136,21 @@ class CustomPostsItem extends Telescope.components.PostsItem {
        
         
        <div className="customDatePriceCountry">
-             
-            <div className="dateContainer">
-            
-               <span className="month">
-                    {moment(itemPriceCountry.relDate).format('MMM')} 
-              </span>
-              <span className="day">
-                    {moment(itemPriceCountry.relDate).format('DD')} 
-              </span>
-              <span className="year">
-                    {moment(itemPriceCountry.relDate).format('gggg')} 
-              </span>
-             </div>  
+              {(itemPriceCountry.countryName != undefined && itemPriceCountry.countryName != null) ? 
+                  <div className="dateContainer">
+                  
+                     <span className="month">
+                          {moment(itemPriceCountry.relDate).format('MMM')} 
+                    </span>
+                    <span className="day">
+                          {moment(itemPriceCountry.relDate).format('DD')} 
+                    </span>
+                    <span className="year">
+                          {moment(itemPriceCountry.relDate).format('gggg')} 
+                    </span>
+                   </div>  
+                :''}
+
               <div className="posts-item-vote customVote">
                   
 

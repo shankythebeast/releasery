@@ -14,9 +14,8 @@ class CustomPostsCategories extends Component {
 	//	console.log("constructor props ",this.props)
 		
 	}
-	componentWillReceiveProps(props){
-		//console.log("propscustom",this.props)
-	}
+	   
+  
   renderEdit() {
     return (
       <Telescope.components.CanDo action="categories.edit.all">
@@ -52,7 +51,7 @@ class CustomPostsCategories extends Component {
 			newQuery.cat = category.slug;
 		  
 		  return (<div key={"arrId_"+arrid} className={currentCategorySlug === category.slug ? "CategoriesLinkWrapper active": "CategoriesLinkWrapper"}>
-		        <LinkContainer to={{pathname:"/list", query: newQuery}}>
+		        <LinkContainer to={{pathname:router.location.pathname, query: newQuery}}>
 				   <MenuItem 
 					eventKey={index+1} 
 					key={category._id} 
