@@ -5196,7 +5196,8 @@ button.close {
 
 .modal-header {
   padding: 15px;
-  border-bottom: 1px solid #6051a9;
+  background-color:#6C49EB;
+  border-bottom: 1px solid #6C49EB;
 }
 
 .modal-header::after {
