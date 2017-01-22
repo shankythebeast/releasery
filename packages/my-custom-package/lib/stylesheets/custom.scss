@@ -161,10 +161,10 @@
 					color: #7E8BAC;
 					border: none;
 					display: inline-block;
-					border-radius: 10px;
+					border-radius: 5px;
 					margin-right: 5px;
 					padding: 2px 6px;
-					border: 1px solid #7E8BAC;
+					border: 1px solid #d9deea;
 					margin: 0;
 
 					transition: color ease-out 300ms;
@@ -245,7 +245,7 @@
     border-width: 0 50px 50px 0;
     border-color: transparent #D9DEEA transparent transparent;
     position: relative;
-    top: -5px;
+    top: -15px;
     margin-right: 0;
 
 	.vote{
@@ -266,7 +266,7 @@
 		}
 	}
 	.icon.fa.fa-fw.fa-heart{
-		color: #D0021B;
+		color: #6051a9;
 	}
 }
 
@@ -317,7 +317,7 @@
     display: flex;
     justify-content: flex-end;
     margin-right: 20px;
-    color: #7E8BAC;
+    color: #6051a9;
     font-family: "Helvetica Neue";
     font-size: 25px;
     font-weight: normal;
@@ -335,7 +335,7 @@
 }
 .posts-item {
 
-	padding: 5px 5px;
+	padding: 15px 15px;
 	flex-wrap: wrap;
 	padding-right: 0;
 	flex-wrap: nowrap;
