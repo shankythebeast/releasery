@@ -136,7 +136,7 @@
 			&.active{
 				li{
 					a{
-						background-color:#0275D8;
+						background-color:#d9deea;
 						text-decoration:none;
 						color:white;
 						i{
@@ -155,14 +155,16 @@
 				border-radius: 10px;
 
 				a{
-				    background: #F6F2EF;
-					color: #AF9D95;
+
+          // Side Tags
+				    background: #d9deea;
+					color: #7E8BAC;
 					border: none;
 					display: inline-block;
 					border-radius: 10px;
 					margin-right: 5px;
 					padding: 2px 6px;
-					border: 1px solid #D9C8C1;
+					border: 1px solid #7E8BAC;
 					margin: 0;
 
 					transition: color ease-out 300ms;
