@@ -473,6 +473,10 @@ body{
 	.socialShare{
 		display:inline-block;
 		float:right;
+		i{
+			font-size: 34px;
+			margin-right:10px;
+		}
 		img{
 			width:30px;
 			margin-right:10px;
@@ -511,7 +515,7 @@ body{
 		}
 	}
 
-	.posts-pages + .CustomCategoriesContainer{
+	.posts-pages + .CustomCategoriesContainer,.page.users-edit-form + .CustomCategoriesContainer,page.users-profile + .CustomCategoriesContainer {
 		display:none;
 	}
 	.posts-pages{
