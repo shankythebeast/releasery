@@ -136,9 +136,10 @@
 			&.active{
 				li{
 					a{
-						background-color:#d9deea;
+						background-color:#6051a9;
 						text-decoration:none;
-						color:white;
+            border: 1px solid #6051a9;
+						color: white;
 						i{
 							display:none;
 						}
@@ -167,13 +168,14 @@
 					border: 1px solid #d9deea;
 					margin: 0;
 
-					transition: color ease-out 300ms;
+
 
 					&:hover{
 					//	background-color: #9013FE;
-	    				color:white;
+          border: 1px solid #6051a9;
+          color: #6051a9;
 						text-decoration:none;
-						color:white;
+
 					}
 				}
 			}
